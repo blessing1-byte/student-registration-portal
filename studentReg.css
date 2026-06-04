@@ -1,0 +1,180 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", sans-serif;
+}
+/*
+body {
+  min-height: 100vh;
+  background-color: #7c3aed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.container {
+  width: 100%;
+  max-width: 550px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 24px;
+  padding: 30px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 25px;
+  color: #222;
+  font-size: 2rem;
+}
+
+form {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 25px;
+}
+
+
+input:focus {
+  border-color: #6366f1;
+  box-shadow: 0 0 12px rgba(99, 102, 241, 0.2);
+}
+
+
+#studentList button:hover {
+  transform: scale(1.1);
+  background: #dc2626;
+}
+
+#studentList i {
+  font-size: 1.1rem;
+}
+
+.empty-state {
+  text-align: center;
+  color: #777;
+  padding: 30px 0;
+} */
+
+.student-form {
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+  border: 1px black solid;
+  padding: 1.5rem;
+  gap: 1rem;
+  margin-top: 70px;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  width: 90%;
+  margin: 0 auto;
+}
+main #studentList {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.studentCard img {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.studentCard {
+  border: 1px black solid;
+  padding: 1.5rem;
+  border-radius: 8px;
+}
+
+input {
+  /* flex: 1; */
+  padding: 0.5rem;
+  border: 2px solid #e5e7eb;
+  border-radius: 8px;
+  font-size: 1rem;
+  outline: none;
+  transition: 0.3s;
+}
+
+input:focus {
+  border-color: #6366f1;
+  box-shadow: 0 0 12px rgba(99, 102, 241, 0.2);
+}
+
+#addStudent {
+  border: none;
+  padding: 15px 22px;
+  border-radius: 14px;
+  background: #6366f1;
+  color: white;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#addStudent:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(99, 102, 241, 0.3);
+}
+
+#addStudent {
+  border: none;
+  padding: 15px 22px;
+  border-radius: 14px;
+  background: #6366f1;
+  color: white;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#addStudent:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(99, 102, 241, 0.3);
+}
+
+#studentList {
+  list-style: none;
+}
+
+#studentList li {
+  background: white;
+  border-radius: 16px;
+  padding: 16px 18px;
+  margin-bottom: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid #f1f1f1;
+  transition: 0.3s;
+}
+
+#studentList li:hover {
+  transform: translateX(5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+#studentList button {
+  width: 24px;
+  height: 24px;
+  border: none;
+  border-radius: 50%;
+  background: #ef4444;
+  color: white;
+  cursor: pointer;
+  transition: 0.3s;
+}
