@@ -27,14 +27,12 @@ renderStudent()
 addStudent()
 removeStudent()
 */
-
 const button = document.getElementById("addStudent");
-const list = document.getElementById("studentList");
-
 const nameInput = document.getElementById("name");
 const emailInput = document.getElementById("email");
 const statusInput = document.getElementById("status");
 const imageInput = document.getElementById("image");
+const list = document.getElementById("studentList");
 
 const getStudents = () => {
   return JSON.parse(localStorage.getItem("students")) || [];
@@ -44,7 +42,6 @@ const saveStudents = (students) => {
   localStorage.setItem("students", JSON.stringify(students));
 };
 
-//create a function to clear inputs
 const clearInputs = () => {
   nameInput.value = "";
   emailInput.value = "";
@@ -52,71 +49,102 @@ const clearInputs = () => {
   imageInput.value = "";
 };
 
-//add student
-const addStudent = () => {
-  const students = getStudents();
+const inputValidations = (name, email, status, image) => {
+  if (!name) {
+    alert("Student name is required");
+    return false;
+  }
 
-  const name = nameInput.value.trim();
-  const email = emailInput.value.trim();
-  const status = statusInput.value.trim();
-  const image = imageInput.files[0];
+  if (!email) {
+    alert("Email is required");
+    return false;
+  }
 
-  const fileReader = new FileReader(); //create a variable to hold the file reader interface
+  const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
+  if (!emailRegex.test(email)) {
+    alert("Invalid email address");
+    return false;
+  }
 
-  fileReader.onload = (e) => {
-    students.push({ name, email, status, image: e.target.result });
-    saveStudents(students);
+  if (!status) {
+    alert("Student must have a status");
+    return false;
+  }
 
-    console.log(students);
+  if (!image) {
+    alert("Please upload an image");
+    return false;
+  }
 
-    renderStudents();
-    clearInputs();
-  };
-
-  fileReader.readAsDataURL(image);
+  return true;
 };
 
-//render student
+// DEFINED FIRST before any call
 const renderStudents = () => {
-  const students = getStudents();
+  if (!list) return;
 
+  const students = getStudents();
   list.innerHTML = "";
 
   students.forEach((student, index) => {
     const div = document.createElement("div");
     div.classList.add("studentCard");
-    div.innerHTML += `
-    
-    <img src=${student.image} alt="student image" class="product-image">
-            <h3>${student.name}</h3>
-            <h5>${student.email}</h5>
-            <p>${student.status}</p>
-         
+    div.innerHTML = `
+      <img src="${student.image}" alt="student image" class="product-image">
+      <h3>${student.name}</h3>
+      <h5>${student.email}</h5>
+      <p>${student.status}</p>
     `;
+
     const removeBtn = document.createElement("button");
     removeBtn.innerHTML = `<i class="ri-delete-bin-6-line"></i>`;
+    removeBtn.addEventListener("click", () => removeStudent(index));
 
-    removeBtn.addEventListener("click", () => {
-      removeStudent(index);
-    });
-
-    list.appendChild(div);
     div.appendChild(removeBtn);
+    list.appendChild(div);
+  });
+
+  gsap.to(".studentCard", {
+    opacity: 1,
+    y: 0,
+    duration: 3,
+    stagger: 0.15,
   });
 };
 
 const removeStudent = (index) => {
   const students = getStudents();
-
   students.splice(index, 1);
-
   saveStudents(students);
   renderStudents();
 };
 
-button.addEventListener("click", (event) => {
-  event.preventDefault();
-  addStudent();
-});
+const addStudent = () => {
+  const name = nameInput.value.trim();
+  const email = emailInput.value.trim();
+  const status = statusInput.value.trim();
+  const image = imageInput.files[0];
+
+  if (!inputValidations(name, email, status, image)) return;
+
+  const fileReader = new FileReader();
+
+  fileReader.onload = (e) => {
+    const students = getStudents();
+    students.push({ name, email, status, image: e.target.result });
+    saveStudents(students);
+    clearInputs();
+    window.location.href = "./studentListing.html";
+  };
+
+  fileReader.readAsDataURL(image);
+};
+
+if (button) {
+  button.addEventListener("click", (event) => {
+    event.preventDefault();
+    addStudent();
+  });
+}
 
 renderStudents();

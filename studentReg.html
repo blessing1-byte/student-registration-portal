@@ -4,35 +4,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
     <link rel="stylesheet" href="./studentReg.css">
-    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+    <title>Student Registration</title>
 </head>
 
 <body>
-    <div class="container">
-        <form class="student-form">
-            <caption><b>Student Registration Form</b></caption>
-            <input type="text" id="name" placeholder="Enter student name">
-            <input type="email" name="email" id="email" placeholder="Enter email">
-            <input type="text" name="status" id="status" value="active" placeholder="status">
-            <input type="file" name="image" id="image">
 
-            <button id="addStudent">Add Student</button>
-        </form>
+    <header>
+        <div class="nav">
+            <h1 class="logo"><i class="ri-graduation-cap-line"></i> EduTrack</h1>
+            <!-- web view -->
+            <nav class="web-view">
+                <a href="./studentReg.html">Register</a>
+                <a href="./studentListing.html">All Students</a>
+            </nav>
 
-        <main>
-            <div id="studentList">
-                <div></div>
-                <div></div>
-                <div></div>
-            </div>
-        </main>
+            <button class="hamburger" id="hamburger">
+                <i class="ri-menu-line"></i>
+            </button>
 
-    </div>
+
+            <!-- mobile view -->
+            <nav class="mobile-view" id="mobile-view">
+                <div class="mobile-nav">
+                    <i class="ri-close-line" id="close-nav"></i>
+                    <a href="./studentListing.html">All Students</a>
+                    <a href="./studentReg.html">Register</a>
+                </div>
+
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <form class="student-form">
+                <h2>Student Registration Form</h2>
+                <input type="text" id="name" placeholder="Enter student name">
+                <input type="email" name="email" id="email" placeholder="Enter email">
+                <input type="text" name="status" id="status" value="active" placeholder="Status">
+                <input type="file" name="image" id="image">
+                <button id="addStudent"><i class="ri-user-add-line"></i> Register Student</button>
+            </form>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 EduTrack. All rights reserved.</p>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
+    <script src="./studentReg.js"></script>
+    <script src="./studentListing.js"></script>
+
 </body>
-<script src="./studentReg.js">
-
-</script>
 
 </html>
